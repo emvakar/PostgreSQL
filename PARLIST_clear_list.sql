@@ -14,10 +14,8 @@ as
 $$
 BEGIN
 
-    DELETE
-    FROM "Entry" AS e
-    WHERE e."listId" = p_listid
-      AND e."isPurchased" = p_ispurchased;
+    DELETE FROM "Entry" AS e
+    WHERE e."listId" = p_listid AND (p_ispurchased is null or e."isPurchased" = p_ispurchased);
 
     RETURN query
         SELECT "l"."id",
